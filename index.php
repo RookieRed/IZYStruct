@@ -2,8 +2,11 @@
 
 require_once 'core/includes.php';
 
-// Exécution du routeur
-$router = new Router();
+// Connexion à labase de données
+Database::instantiate();
+
+// Instanciation du routeur
+$app = new Application();
 
 /*----------------------------------------------------
 	Affichage de la page
@@ -12,14 +15,14 @@ $router = new Router();
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?= $router->getPageTitle(); ?></title>
-	<?php $router->includeCSS(); ?>
+	<title><?= $app->getPageTitle(); ?></title>
+	<?php $app->includeCSS(); ?>
 </head>
 <body>
 
-	<?php $router->displayMessages(); ?> 
-	<?php $router->displayContent(); ?> 
+	<?php $app->displayMessages(); ?> 
+	<?php $app->displayContent(); ?> 
 
-<?php $router->includeJS(); ?>
+<?php $app->includeJS(); ?>
 </body>
 </html>

@@ -4,12 +4,8 @@
 /**
  *
  */
-class Controller {
+abstract class Controller {
 
-	/**
-	 *
-	 */
-	private $_router;
 	/**
 	 *
 	 */
@@ -21,7 +17,7 @@ class Controller {
 	/**
 	 *
 	 */
-	private $_subPage;
+	private $_page;
 	/**
 	 *
 	 */
@@ -33,11 +29,7 @@ class Controller {
 	/**
 	 *
 	 */
-	private $_extraJS;
-	/**
-	 *
-	 */
-	private $_extraCSS;
+	protected $_app;
 
 	/**
 	 *
@@ -48,16 +40,16 @@ class Controller {
 	/**
 	 *
 	 */
-	public function __construct(Router $router, $subPage, array $parameters) {
-		$this->_router = $router;
-		$this->_subPage = $subPage;
+	public function __construct(Application $app, $page, array $parameters) {
+		$this->_app = $app;
+		$this->_page = $page;
 		$this->_parameters = $parameters;
 	}
 
 	/**
 	 *
 	 */
-	public abstract function execute();
+	public abstract function default();
 
 	/**
 	 *
@@ -90,14 +82,6 @@ class Controller {
 	protected final function setView($view, array $dataView) {
 		$this->_view = $view;
 		$this->_dataView = $dataView;
-	}
-
-	protected final function addExtraCSS() {
-
-	}
-
-	protected final function addExtraJS() {
-		
 	}
 
 }
